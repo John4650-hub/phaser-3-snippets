@@ -1,7 +1,7 @@
 # phaser-3-snippets
 Some essential phaser 3 code
 
-## configuration setting
+# configuration setting
 ```javascript
 import Phaser from './scenes/phamport.js'
 import {SceneMain} from './scenes/gameScene.js'
@@ -16,8 +16,7 @@ let config = {
 
 var game = new Phaser.Game(config);
 ```
-## For scenes we will store them in another file.Let it be called "gameScenes.js"
-and the following code inhabits it
+# For scenes we will store them in another file.Let it be called "gameScenes.js"and the following code inhabits it
 
 ```javascript
 import Phaser from './phamport.js'
