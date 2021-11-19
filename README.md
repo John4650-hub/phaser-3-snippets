@@ -16,7 +16,7 @@ let config = {
 
 var game = new Phaser.Game(config);
 ```
-For scenes we will store them in another file.Let it be called "gameScenes.js"
+## For scenes we will store them in another file.Let it be called "gameScenes.js"
 and the following code inhabits it
 
 ```javascript
