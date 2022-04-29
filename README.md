@@ -1,46 +1,81 @@
-# phaser-3-snippets
-## Some essential phaser 3 code
-
-# configuration setting
-```javascript
-import Phaser from './scenes/phamport.js'
-import {SceneMain} from './scenes/gameScene.js'
-
-let config = {
-  type: Phaser.AUTO,
-  width: 800,
-  height: 600,
-  parent: 'phaser-game',
-  scene: [SceneMain]
-};
-
-var game = new Phaser.Game(config);
-```
-# For scenes we will store them in another file.Let it be called "gameScenes.js"and the following code inhabits it
-
-```javascript
-import Phaser from './phamport.js'
-// here we import phaser
-
-class SceneMain extends Phaser.Scene {
-  constructor() {
-    super('SceneMain');
-
-  }
-
-  preload()
-  {
-    this.load.image("theId/name","the_path")
-    // some photos to load either sprites
-  }
-  create() {
-this.add.image("x","y","theId/name");
-
-  }
-  update()
-  {
-    //this code is executed everytime the game runs  
-  }
+### Creating a scene in phaser
+- **with classes**
+We can create scenes in phaser using es6 classes as below. I prefer arcade physics and rarely use matter:
+```js
+class mainScene extends Phaser.Scene{
+	constructor(){
+		super({key:'mainscene'});
+	}
+	preload(){}
+	create(){}
+	update(){}
 }
-export { SceneMain };
+
+const config = {
+	type: Phaser.AUTO,
+	parent: 'div_id',
+	scale: {
+	mode: Phaser.Scale.FIT
+	},
+	width:800,
+	height:600,
+	physics: {
+		default:'arcade',
+		arcade:
+			{
+			gravity:{y:200}
+			debug:false
+			}
+	},
+	scene:[mainScene]
+}
+const game = Phaser.Game(config):
+```
+
+- **The other way**:
+I use this way when am only working in one scene
+
+```js
+const config = {
+	type: Phaser.AUTO,
+	parent: 'div_id',
+	scale: {
+	mode: Phaser.Scale.FIT
+	},
+	width:800,
+	height:600,
+	physics: {
+		default:'arcade',
+		arcade:
+			{
+			gravity:{y:200}
+			debug:false
+			}
+	},
+	scene:{
+		preload,
+		create,
+		update
+	}
+}
+const game = Phaser.Game(config):
+
+function preload(){}
+function create(){}
+function update(){}
+```
+
+## Loading in things
+We do this either in the config or the preload
+#### images
+```Js
+this.load.image('imgKey','imageSrc');
+```
+#### spritesheet
+```js
+this.load.spritesheet('key','spritesheetSrc'{frameWidth:'widthOfTheImage/numOfColumns',frameHeight:'heightOfTheImage/numOfRows'});
+```
+#### audio
+```js
+this.load.audio('audioKey','audioSrc');
 ```
